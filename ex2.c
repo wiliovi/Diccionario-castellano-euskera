@@ -11,33 +11,6 @@ void buscar_asterisco ( char [] , char [] , int );
 void obtener_traduccion( char[] , char [] , int );
 void traducir( char[] , char [] , char [] );
 void mostrar ( char [] , char[] , char[] );
-void agregar_palabra( char [] , char [] );
-
-void agregar_palabra (char dic [] , char pa []){
-
-  int tam;
-  int i=0;
-  int chk0=0;
-
-  char mi_dic[N];
-  strcpy(mi_dic,dic);
-  tam=strlen(mi_dic);
-
-  while ( pa[i] != '\0') {
-    if ( !chk0 && mi_dic[tam] == '\0'  && i == 0 ) {
-      mi_dic[tam]='#';
-      chk0++;
-    }
-    else{
-      mi_dic[tam]=pa[i];
-      i++;
-    }
-    tam++;
-  }
-  mi_dic[tam]='\0';
-
-  strcpy(dic,mi_dic);
-}
 
 void mostrar ( char dic [] , char pa [], char tra [] ){
 
@@ -47,12 +20,6 @@ void mostrar ( char dic [] , char pa [], char tra [] ){
   }
   else{
     printf("la palabra no se encuentra en el diccionario\n");
-    printf("Desea agregar la traduccion de la palabra al diccionario?(s/n)\n");
-    fflush(stdin);
-    scanf("%s",&opt);
-    if (opt == 's') {
-      agregar_palabra(dic,pa);
-    }
   }
 }
 
@@ -152,9 +119,8 @@ void main( ) {
   char hiztegia [N];
   char palabra[N],traduccion[N];
 
-  cargar_diccionario(hiztegia);
   do {
-    printf("aqui esta %s\n",hiztegia);
+    cargar_diccionario(hiztegia);
     leer_datos(palabra);
     traducir(hiztegia,palabra,traduccion);
     mostrar(hiztegia,palabra,traduccion);
